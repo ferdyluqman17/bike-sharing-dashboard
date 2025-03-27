@@ -2,28 +2,25 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Title
 st.set_page_config(page_title='Bike Sharing Dashboard', layout='wide')
 st.title('🚲 Bike Sharing Dashboard')
 st.write('Dashboard ini menyajikan hasil analisis data penyewaan sepeda harian.')
 
-# Load Data
 @st.cache_data
 def load_data():
-    path = r'C:\Users\Ferdy Luqman\Downloads\bike_sharing_project\dashboard\day_clean.csv'
+    path = 'day_clean.csv'
     df = pd.read_csv(path)
     return df
 
 df = load_data()
 
-# Sidebar
+
 st.sidebar.title('Menu')
 selected = st.sidebar.radio('Pilih Visualisasi:', [
     'Tren Penyewaan Harian',
     'Rata-rata Penyewaan per Musim'
 ])
 
-# Visualisasi 1: Tren Penyewaan Harian
 if selected == 'Tren Penyewaan Harian':
     st.subheader('📈 Tren Penyewaan Sepeda Harian')
 
@@ -41,7 +38,6 @@ if selected == 'Tren Penyewaan Harian':
     Dari grafik ini terlihat adanya tren musiman. Jumlah penyewaan cenderung meningkat pada musim panas dan gugur, lalu menurun saat musim dingin.
     """)
 
-# Visualisasi 2: Rata-rata Penyewaan per Musim
 elif selected == 'Rata-rata Penyewaan per Musim':
     st.subheader('🌤️ Rata-rata Penyewaan Berdasarkan Musim')
 
@@ -68,6 +64,5 @@ elif selected == 'Rata-rata Penyewaan per Musim':
     Musim gugur dan musim panas memiliki rata-rata jumlah penyewaan sepeda paling tinggi. Hal ini bisa menjadi pertimbangan untuk strategi bisnis atau promosi saat musim tersebut.
     """)
 
-# Footer
 st.sidebar.markdown('---')
 st.sidebar.caption('© 2025 Ferdy Luqman')
